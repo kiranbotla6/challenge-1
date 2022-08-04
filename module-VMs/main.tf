@@ -1,4 +1,10 @@
 #creating a web layer VM
+resource "azurerm_public_ip" "public_ip" {
+  name                = "webvm_public_ip"
+  resource_group_name = var.rg_name
+  location            = var.location
+  allocation_method   = "Dynamic"
+}
 
 resource "azurerm_network_interface" "webnic" {
   name                = "web_nic"
@@ -9,6 +15,7 @@ resource "azurerm_network_interface" "webnic" {
      name                          = "webnicipconfig"
      subnet_id                     = var.websubnet_id
      private_ip_address_allocation = "dynamic"
+     public_ip_address_id = azurerm_public_ip.public_ip.id
    }
 }
 
