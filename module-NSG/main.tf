@@ -49,7 +49,7 @@ resource "azurerm_network_security_group" "app_subnet_nsg" {
  resource "azurerm_network_security_rule" "appsub_nsgrule1" {
   name                        = "appnsgrule1"
   priority                    = 100
-  direction                   = "Outbound"
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
